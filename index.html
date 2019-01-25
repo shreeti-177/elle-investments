@@ -15,152 +15,147 @@
         <script src="../js/load-head.js"></script>
     </head>
 
-    <body onload="loadContents();">
+    
+    <body>
+
+
         <div id="supra-header"></div>
-        <div id="page">
-            <div id="header"> 
-                <script>
-    /*  Google translator uses a cookie called 'googtrans' to track which 
-     *  language is selected. By setting googtrans cookie to '/en/it', translator 
-     *  will use that information to translate the current page into Italian.
-     *   
-     *  Google translator is a client-side language translator that provides
-     *  client a way to choose a different language using the Google translator 
-     *  widget. Because the widget is hidden from the client, a cookie must 
-     *  be used to tell the translator to what language it should translate to.
-     *  
-     *   This seems to work just as well
-     *    Cookies.set('googtrans', '/en/en', {path: ''});
-     *    
-     *    Cookies.set('googtrans', '/en/en', {domain: '.localhost', path: ''}); //needed for safari
-     *    */
+<div id="page">
+        <div id="header">
 
 
-    Cookies.set('googtrans', '/en/en', {expires: 2, path: ''});
-    Cookies.set('googtrans', '/en/en', {expires: 2, path: '/'});
-    // it seems that if we don't set this second one explicitly, the browser (or at least Chrome) sets it automatically.
+            <div>
+                <div id="stars">
+                    <!-- creates a hidden div on top of the page where the stars are displayed
+                         right clicking on the div will lead to a new page -->
+                    <div oncontextmenu="javascript:window.location.href = '../privato/index.php';"
+                         style="opacity: 0; width: 50px; height:50px; left: 23px; cursor:default;
+                         background-color:red; position: absolute;"></div>
+                    <h1>Elle Investments </h1>
+                </div>
+                <h4> Asset Management</h4>
 
-    /*  Function below is provided by Google, needed to translate the page */
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement({
-            pageLanguage: 'en',
-            includedLanguages: 'de,en,es,fr,it,la,ru',
-            autoDisplay: false,
-            multilanguagePage: true
-        }, 'google_translate_element');
-    }
-</script>
-
-
-<style>
-    /*  Changes the color of the button selected to indicate that current page is
-     *  in English */
-    #lang-change-en {
-        background-color: #B09B4C;
-    }
-</style>
-
-<!-- Script below is provided by Google, needed to translate the page 
-removed for English
-<script type='text/javascript' src='//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit'></script>     
--->
-
-<div class="notranslate">
-    <div id="stars">
-        <!-- creates a hidden div on top of the page where the stars are displayed
-             right clicking on the div will lead to a new page -->
-        <div oncontextmenu="javascript:window.location.href = '../privato/index.php';" 
-             style="opacity: 0; width: 50px; height:50px; left: 23px; cursor:default; 
-             background-color:red; position: absolute;"></div>
-        <h1>Elle Investments </h1>
-    </div>
-    <h4> Asset Management</h4>    
-
-<div class= "btn">
-    <!--Created an id for all links below following the 
-        'lang-change-xx' pattern that already existed for EN and ES,
-        Changed the class name so that all links share the same class 
-        name, and changed href attributes to call a function -->
-    <a id ="lang-change-en" class="btn_language" 
-       href="javascript:changeLang('lang-change-en');">EN</a>
-    <a id= "lang-change-es" class="btn_language" 
-       href="javascript:changeLang('lang-change-es');">ES</a>
-    <a id= "lang-change-fr" class="btn_language" 
-       href="javascript:changeLang('lang-change-fr');">FR</a>
-    <a id= "lang-change-de" class="btn_language" 
-       href="javascript:changeLang('lang-change-de');">DE</a>
-    <a id= "lang-change-it" class="btn_language" 
-       href="javascript:changeLang('lang-change-it');">IT</a>
-</div>
-
-
-    <div class="middle-bar"></div>
-</div> 
+                <div class="middle-bar"></div>
             </div>
-            <div id="main-container" class="clear"> 
-                <div id="tableDiv">
-                    <div id="main-content">
-    <ul class="crumbs">
-<!-- OLD MENU ITEM. DELETE WHEN PAGE LINKING IS DONE.
-    <li><a href="#investing_philosophy"
-           class="LcustomTranslation wasF2 notranslate"
-           id="aboutuspage">Investing Philosophy</a></li>-->    
-    <li><a href="index.html"
-           id="professionalspage">About</a></li>
-    <li><a href="published_research.html" 
-           id="contacuspage">Published Research</a></li>
-    <li><a href="internships.html" 
-           id="contacuspage">Internships</a></li>       
-    <li><a href="contact.html" 
-           id="contacuspage">Contact</a></li>
-</ul> 
-    <style>
-        #aboutuspage {
-            color: #b09b4c;
-        }
-    </style>
+        </div><!-- header -->
 
-    <article>
+        <div id="main-container" class="clear">
+            <div id="tableDiv">
+                <div id="main-content">
+                    <ul class="crumbs">
+                        <li><a href="index.html">About</a></li>
+                        <li><a href="research.html">Research</a></li>
+                        <li><a href="internships.html">Internships</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+
+                    <br><br>
+                    <h1>about</h1>
+                    <article> <!-- Garden Metaphor --> 
         
-        <h1 class="notranslate LcustomTranslation" id="about">About</h1>
+     
+        <h3> ELLE’s  “ADAPTIVE HARVESTING” Strategy – a Garden Metaphor</h3>
+        <p><br>
 
-        <p class="LcustomTranslation" id="D2">Elle Investments is a small family office specializing in asset management. The investment fund operated by Elle utilizes both quantitative and value investing strategies to seek out excellent high-return opportunities around the globe, with a particular emphasis on stocks that trade on the US markets. While a good part of our research focuses on small- and mid-cap equities in the biotech space, we are always on the lookout for favorable risk/reward investments across all sectors of the economy. Our trading strategies seek to take advantage of temporary mispricings that arise from overreactions to earnings misses, FDA decisions/clinical trial data readouts, macro news, etc., with the aim of generating returns that are independent of macro market movements. 
+
+While we believe that a strong understanding of mathematical techniques and statistical concepts are essential to the successful implementation of any investment strategy, the guiding principles should be strongly grounded in common-sense, practical, business approach.<br><br>
+
+Despite being a Math. Ph.D. myself, I observe too much use of math for its own sake.<br>
+<br>
+ To maintain contact with reality, we like to describe managing an investment portfolio as managing a vegetable garden. Hence the following “Garden Metaphor”.<br>
+<br>
+There is a time for planting and a time for harvesting – and each plant is ready for picking at its own time and pace. <br><br>
+
+Every day, your garden needs to be tended to. Some fruits are ripe to be harvested: this should be done promptly – lest they rot on the tree.<br><br>
+
+Some fruits are growing up nicely but are not yet ripe and should be left on the tree for just a little bit longer.<br>v
+
+Some plants have been infected by disease and need to be cured or cut off.<br><br>
+
+The rest of time is spent tending to your garden with all its attendant activities: planting, pruning, watering, fertilizing, educating yourself and nurturing your seedlings.<br>
+
+And yes, there is a lot of science and knowledge that can and should be applied in doing so.<br><br>
+
+LD, PhD Mathematics
+<br><br>
+
         </p>
 
-            <footer id="colophon" class="clearfix notranslate"> 
-                <!-- goes inside <footer id="colophon">  -->
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      </article><!-- Garden Metaphor -->
+      
+      <article> <!-- Mean Variance Optimization -->
+        
+        
+ <h3> Pitfalls of Common portfolio management approaches</h3>
+        <p><br>
 
-<div class="container">
-    <aside class="widget">
-        <ul>
-            <li> <a href="index.php?page=about-us">Investing Philosophy</a> </li>
-            <li> <a href="index.php?page=terms_it">About</a> </li>
-            <li> <a href="index.php?page=privatezza">Published Research</a> </li>
-            <li> <a href="index.php?page=privatezza">Internships</a> </li>
-            <li> <a href="index.php?page=privatezza">Contact</a> </li>
-        </ul> 
-    </aside>
+Markowitz-style Portfolio Optimization and its variants underlie the strategies of most asset management funds and for almost 70 years permeate the thinking of Finance professionals.<br><br>
 
-    <!--This is for text in the middle of the footer-->
-    <aside class="widget">
-        <strong></strong><br/>
-        <div itemprop="address" itemscrop="" itemtype="http://schema.org/PostalAddress">
-            <span itemprop="telephone"></span><br/>
-            <br/>
-            <br/>
-        </div>
-    </aside>
+Yes it is fraught with both theoretical and practical issues.<br>
+<br>
+ While this site is not a theory forum, we list here a few references for those who are more scientifically inclined.<br>
 
-    <aside class="widget">
-        email address: <a href="mailto:ellel@live.com">ellel@live.com</a><br/>
-        <br/>
-        © 2018 Elle Investments. All Rights Reserved.<br/>
-        Site by <a href="www.renderterch.com" target="0">RenderTech, Inc.</a>
-    </aside>
-</div>
- 
-            </footer>
-        </div>
+        <ul><li>
+Markowitz, H.M. (March 1952). "Portfolio Selection". The Journal of Finance. 7 (1): 77–91. doi:10.2307/2975974. JSTOR 2975974. </li>
+            <li>
+Markowitz, H.M. (1959). Portfolio Selection: Efficient Diversification of Investments. New York: John Wiley & Sons. (reprinted by Yale University Press, 1970,
+</li>
+            <li>Humphrey, J.; Benson, K.; Low, R.K.Y.; Lee, W.L. (2015). "Is diversification always optimal?". Pacific Basin Finance Journal. 35 (B): B. doi:10.1016/j.pacfin.2015.09.003.
+                </li>
+            <li>
+Chua, D.; Krizman, M.; Page, S. (2009). "The Myth of Diversification". Journal of Portfolio Management. 36 (1): 26–35. 
+</li>
+</ul>
+
+
+<p>For a very quick thinking points, these comments will suffice:
+        </p>
+       <ul><li>
+the parameters that go into the calculations are estimated from the past and may have little relevance to the future;</li>
+            <li>
+complicated calculations give an illusion of precision and accuracy that is just not there.
+</li>
+            <li>The entire methodology is based on a fixed horizon which is the same for all securities (whereas our garden metaphor approach is much closer to reality).
+                </li>
+          
+</ul>
+      </article > <!-- Mean Variance Optimization -->
+
+                    <footer id="colophon" class="clearfix notranslate">
+                        <!-- goes inside <footer id="colophon">  -->
+
+                        <div class="container">
+                            <aside class="widget">
+                                <ul>
+                                    <li><a href="index.html">About</a></li>
+                                    <li><a href="research.html">Research</a></li>
+                                    <li><a href="internships.html">Internships</a></li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                </ul>
+                            </aside>
+
+                            <!--This is for text in the middle of the footer-->
+                            <aside class="widget">
+                                <strong></strong><br/>
+                                <div itemprop="address" itemtype="http://schema.org/PostalAddress">
+                                    <span itemprop="telephone"></span><br/>
+                                    <br/>
+                                    <br/>
+                                </div>
+                            </aside>
+
+                            <aside class="widget">
+                                email address: <a href="mailto:ellel@live.com">ellel@live.com</a><br/>
+                                <br/>
+                                © 2018 Elle Investments. All Rights Reserved.<br/>
+                                Site by <a href="www.renderterch.com" target="0">RenderTech, Inc.</a>
+                            </aside>
+                        </div>
+
+                    </footer>
+                </div><!-- main-content -->
+            </div><!-- tableDiv -->
+        </div><!-- main-container -->
+</div><!-- page -->
     </body>
 </html>

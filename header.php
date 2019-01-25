@@ -1,4 +1,4 @@
-<<div class="notranslate">
+<<div>
     <div id="stars">
         <!-- creates a hidden div on top of the page where the stars are displayed
              right clicking on the div will lead to a new page -->
@@ -9,6 +9,8 @@
     </div>
     <h4> Asset Management</h4>    
 
+    <div class="middle-bar"></div>
+</div>
 
 
 
@@ -24,8 +26,8 @@
            id="aboutuspage">Investing Philosophy</a></li>
     <li><a href="#about"
            id="professionalspage">About</a></li>
-    <li><a href="#published_research" 
-           id="contacuspage">Published Research</a></li>
+    <li><a href="#research" 
+           id="contacuspage">Research</a></li>
     <li><a href="#internships" 
            id="contacuspage">Internships</a></li>       
     <li><a href="#contact" 
