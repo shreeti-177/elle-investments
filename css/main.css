@@ -115,6 +115,43 @@ blockquote, q {
     quotes: "" "";
 }
 
+
+/*buttons 
+button {
+    display: inline-block;
+    border: none;
+    padding: 1rem 2rem;
+    margin: 0;
+    text-decoration: none;
+    background: #0069ed;
+    color: #ffffff;
+    font-family: sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background 250ms ease-in-out, 
+                transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+button:hover,
+button:focus {
+    background: #0053ba;
+}
+
+button:focus {
+    outline: 1px solid #fff;
+    outline-offset: -4px;
+}
+
+button:active {
+    transform: scale(0.99);
+}
+
+*/
+
+
 /*tables */
 table {
     /* tables still need 'cellspacing="0"' in the markup */
@@ -272,10 +309,6 @@ iframe.goog-te-banner-frame,.goog-te-balloon-frame{display:none !important;}
     vertical-align: top;
 }
 
-#buttons-container {
-    display: table-cell;
-    margin-top: 0px;
-    width: 30%;
 
 }
 
