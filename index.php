@@ -26,6 +26,11 @@ switch ($page) {
         $page = "contact.html";
         $title = "contact";
         break;
+    
+    case "tracker":
+        $page = "tracker.html";
+        $title = "tracker";
+        break;
    
     default:
         $page = "de_nobis.html";
