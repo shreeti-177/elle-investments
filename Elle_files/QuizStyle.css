@@ -4,7 +4,7 @@ padding: 8px;
 margin: 0px;
 height: 100%;
 border: none;
-width: 540px.   // by L
+width: 540px;   /* by L */
 }
 
 .padded {
