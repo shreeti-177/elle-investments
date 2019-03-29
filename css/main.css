@@ -689,11 +689,11 @@ button.nav-toggle {
     padding: 1px 1px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+    display: none; /*inline-block;*/
     font-family: 'Open Sans', sans-serif;
     font-size: 1.4rem;
     margin: 0px 0px;
-    cursor: pointer;
+    cursor:none; /* pointer;*/
 }
 
 .clearfix_new {
