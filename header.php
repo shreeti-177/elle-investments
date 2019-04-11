@@ -18,7 +18,7 @@
                     <div style="display: inline-block">
                        
                         <a target="_tab" rel="noopener noreferrer" href="LoginF/login.php">
-                         <img src = "images/ELLE LOGO-Lwlogin_100x56.png" width="100" height="56px" alt="Elle Investments logo" ></a>
+                         <img src = "http://www.elle-investments.com/images/ELLE LOGO-Lwlogin_100x56.png" width="100" height="56px" alt="Elle Investments logo" ></a>
                     </div>
                 </td>
             </tr>
