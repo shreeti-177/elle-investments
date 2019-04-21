@@ -21,17 +21,17 @@ switch ($page) {
         $page = "internships.html";
         $title = "internships";
         break;
-    
+
     case "contact":
         $page = "contact.html";
         $title = "contact";
         break;
-    
+
     case "tracker":
         $page = "tracker.html";
         $title = "tracker";
         break;
-   
+
     default:
         $page = "de_nobis.html";
         $title = "De Nobis - About us";
@@ -40,13 +40,13 @@ switch ($page) {
 
 <!DOCTYPE html>
 <html>
+
     <head>
         <title><?php print $title; ?></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
-
         <!--All page specific code goes above this line which loads the common head-->
-        <script src="js/load-head.js"></script>
+        <script src="/elle-investments/js/load-head.js"></script>
     </head>
 
     <body>
@@ -74,13 +74,9 @@ switch ($page) {
 
                 </div>
             </div>
-<!--
-            <nav id="navigation"> 
-                ?php include('navigation.html'); ?> 
-            </nav>
--->
+
             <footer id="colophon" class="clearfix notranslate"> 
-               <?php include('footer.html'); ?> 
+                <?php include('footer.html'); ?> 
             </footer>
 
         </div>
