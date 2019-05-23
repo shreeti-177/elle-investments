@@ -34,15 +34,10 @@
              <div id="main-container" class="clear"> 
                 <br>
                 <div id="tableDiv">
-                    <?php include('PBYI.html'); ?>
+                    <?php include('XIN.html'); ?>
 
                 </div>
 
-                <!--
-            <footer id="colophon" class="clearfix notranslate"> 
-                < ?php include('../footer.html'); ?> 
-            </footer>
--->
         </div>
     </body>
 </html>
