@@ -8,7 +8,7 @@
         <!--All page specific code goes above this line which loads the common head-->
         <script src="/js/load-head.js"></script>
         <!--why is the line above not working and the line below necessary?-->
-        <link rel='stylesheet' type='text/css' href='/css/main.css'/>
+        <link rel='stylesheet' type='text/css' href='../css/main.css'/>
         
         
     </head>
@@ -22,14 +22,14 @@
             include ('cookie-notice-banner/cookie-notice-banner.html');
             /* JQuery so the banner slides down and css for cookie notice banner */
             echo '<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>'
-            . '<script src="cookie-notice-banner/cookie-notice-banner.js"></script>';
+            . '<script src="../cookie-notice-banner/cookie-notice-banner.js"></script>';
         }
         ?>
 
         <div id="supra-header"></div>
         <div id="page">
             <div id="header"> 
-                <?php include('../header.php'); ?> 
+                <?php include('../mainFolder/header.php'); ?> 
             </div>
              <div id="main-container" class="clear"> 
                 <br>
