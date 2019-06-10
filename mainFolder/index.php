@@ -76,7 +76,7 @@ switch ($page) {
             </div>
 
             <footer id="colophon" class="clearfix notranslate"> 
-                <?php include('footer.html'); ?> 
+                <?php include('../mainFolder/footer.html'); ?> 
             </footer>
 
         </div>
