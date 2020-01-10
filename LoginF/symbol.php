@@ -132,13 +132,15 @@
                         </tr>
                         <tr>
                           <td><h4>1st Upside: <a contenteditable="true" id="upside"><?= $row1['1st_upside'] ?></a></h4></td>
-                          <td><h4>2nd Price Target : <a contenteditable="true" id="2ndPTarget"><?= $row1['2nd_price_target'] ?></a></h4></td>
+                          <!--must change the ID below>-->
+                          <td><h4>Consensus : <a contenteditable="true" id="2ndPTarget"><?= $row1['2nd_price_target'] ?></a></h4></td>
                           <td><h4>Actual Weight: <a contenteditable="true" id="actualWeight"><?=$row1['actual_weight'] ?>%</a></h4></td>
                           <td><h4>Last Earnings Date: <a id="LDate" class="updatable" contenteditable="true"><?= $row1['last_earnings'] ?></a></h4></td>
                         </tr>
                         <tr>
                           <td><h4>Last Update: <a contenteditable="true" id="LUpdate"><?= $row1['last_update'] ?></a></h4></td>
-                          <td><h4>2nd Upside: <a contenteditable="true" id="2ndupside"><?= $row1['2nd_upside'] ?></a></h4></td> 
+                               <!--must change the ID below>-->
+                          <td><h4>Consensus Upside: <a contenteditable="true" id="2ndupside"><?= $row1['2nd_upside'] ?></a></h4></td> 
                           <td><h4>Weight Difference: <a contenteditable="true" id="diff"><?= $row1['weight_difference'] ?></a></h4></td>
                           <td><h4>Analysis Date: <a contenteditable="true" id="AnalysisDate"><?= $row1['analysis_date'] ?></a></h4></td>
                         </tr>
