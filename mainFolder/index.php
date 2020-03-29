@@ -31,6 +31,11 @@ switch ($page) {
         $page = "tracker.html";
         $title = "tracker";
         break;
+    
+    case "tutorials":
+        $page = "tutorials.html";
+        $title = "tutorials";
+        break;
 
     default:
         $page = "de_nobis.html";
