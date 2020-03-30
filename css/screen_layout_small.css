@@ -1,11 +1,12 @@
 @charset "UTF-8";
 
-#header { height: 155px; }
-#main-container { margin-top: 175px; }
+#header { height: 110px; }
+#main-container { margin-top: 125px; }
+
 
 .crumbs {
     list-style: none;
-    margin: 26px 0 6px;
+    margin: 12px 0 6px;
     padding: 0;
     zoom: 1;
 }
@@ -34,13 +35,6 @@
 .crumbs li:last-child {
     border-right: none;
 }
-#crumbs {
-    list-style: none;
-    margin: 26px 0 6px;
-    padding: 0;
-    zoom: 1;
-}
-
 
 
 #main-content{

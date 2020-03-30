@@ -73,7 +73,6 @@ switch ($page) {
                 <?php include('../mainFolder/header.php'); ?> 
             </div>
             <div id="main-container" class="clear"> 
-                <br>
                 <div id="tableDiv">
                     <?php include($page); ?>
 
