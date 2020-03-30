@@ -31,6 +31,11 @@ switch ($page) {
         $page = "tracker.html";
         $title = "tracker";
         break;
+    
+    case "tutorials":
+        $page = "tutorials.html";
+        $title = "tutorials";
+        break;
 
     default:
         $page = "de_nobis.html";
@@ -68,7 +73,6 @@ switch ($page) {
                 <?php include('../mainFolder/header.php'); ?> 
             </div>
             <div id="main-container" class="clear"> 
-                <br>
                 <div id="tableDiv">
                     <?php include($page); ?>
 
