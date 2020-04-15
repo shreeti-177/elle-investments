@@ -108,6 +108,7 @@
                   ?>
                     <ul>
                         <li><h4><a contenteditable="true" id="status"><?= $row1['status'] ?></a></h4></li>
+                        <li><h4><a contenteditable="true" id="status"><?= $row1['status'] ?></a></h4></li>
                         <li><h4>Penny Stock: <a contenteditable="true" id="PStock"><?= $row1['penny_stock'] ?></a></h4><h4>Cash: <a contenteditable="true" id="cash"><?= $row1['cash'] ?></a></h4><h4>Burn: <a contenteditable="true" id="burn"><?=$row1['burn'] ?></a></h4></li>
                         <li><h4>Biotech: <a contenteditable="true" id="biotech"><?= $row1['biotech'] ?></a></h4></li>         
                     </ul>
@@ -116,7 +117,7 @@
                     <h4 class="stock_title"><a contenteditable="true" id="mktCap"><?= $row1['market_cap'] ?></a></h4>
                     
                     <h4 class="stock_title"><a contenteditable="true" id="industry"><?= $row1['industry'] ?></a></h4>
-                    <h4>Current Price ($): <a contenteditable="true" id="price"><?= $row1['current_price']?></a><p id="api_return">!!</p></h4>   
+                    <h4>Current Price ($): <a contenteditable="true" id="price"></a><p id="api_return"></p></h4>   
                     
                    
                   <!--<div style="clear:both"></div>-->
@@ -231,62 +232,115 @@
             var firstPriceTarget=$("#PTarget").text()
             var secondPriceTarget=$("#2ndPTarget").text();
             var last_price=$("#last_price").text();
-            console.log(last_price + typeof(last_price));
-            $.ajax({// initial rendering of Symbol page with data from API
-                    url: `https://api.iextrading.com/1.0/stock/${symbol}/quote`, //GET JSON object from url
-                    type: 'GET',
-                    success: function(data1){
-                            $.post("Latest_price_into_Main.php",data1);//sends to php page to update sql table with new price
-                            $("#price").text(" "+(Math.round(data1[`latestPrice`]*100)/100).toFixed(2));
-                            $("#upside").text(Math.round((firstPriceTarget/data1[`latestPrice`]-1)*100)+"%");
-                            $("#2ndupside").text(Math.round((secondPriceTarget/data1[`latestPrice`]-1)*100)+"%");
-                           if((last_price==="")||(last_price<=0))
-                            {
-                                 $("#varL").text("");
-                            }
-                            else{
+            //console.log(last_price, secondPriceTarget, firstPriceTarget);
+            var now = Math.floor(Date.now());
+
+
+            $.getJSON('https://api.iextrading.com/1.0/tops/last?symbols='+symbol, function(data) {
+
+              var latestPrice = data[0].price;
+              var timeUpdated = data[0].time;
+                
+                if (now - timeUpdated > 600000){
+                    $("#price").text(latestPrice + "!!");
+                }else{
+                    $("#price").text(latestPrice);
+                    $.post("Latest_price_into_Main.php",data[0]);
+                }
+
+            });
+          
+            // $.ajax({// initial rendering of Symbol page with data from API
+            //         url: `https://api.iextrading.com/1.0/stock/${symbol}/quote`, //GET JSON object from url
+            //         type: 'GET',
+            //         success: function(data1){
+            //                 $.post("Latest_price_into_Main.php",data1);//sends to php page to update sql table with new price
+            //                 $("#price").text(" "+(Math.round(data1[`latestPrice`]*100)/100).toFixed(2));
+            //                 $("#upside").text(Math.round((firstPriceTarget/data1[`latestPrice`]-1)*100)+"%");
+            //                 $("#2ndupside").text(Math.round((secondPriceTarget/data1[`latestPrice`]-1)*100)+"%");
+            //                if((last_price==="")||(last_price<=0))
+            //                 {
+            //                      $("#varL").text("");
+            //                 }
+            //                 else{
                                
-                                $("#varL").text(Math.round((data1[`latestPrice`]/last_price-1)*100)+"%"); 
-                            }
-                            $("#api_return").hide();
-                                },
-                    error: function() {//if no JSON object is returned
-                            $("#api_return").show();  //display html element indicating JSON object did not return
-                            },
-                                dataType:"json"
-                                });         
-            $.get(`https://api.iextrading.com/1.0/stock/${symbol}/stats`, function (data){
-              $("#mktCap").text((+data["marketcap"]/1000000).toFixed(2)+"M");
-                }); 
+            //                     $("#varL").text(Math.round((data1[`latestPrice`]/last_price-1)*100)+"%"); 
+            //                 }
+            //                 $("#api_return").hide();
+            //                     },
+            //         error: function() {//if no JSON object is returned
+            //                 console.log("nuk po punon")  //display html element indicating JSON object did not return
+            //                 }
+            //                     });         
+            // $.get(`https://api.iextrading.com/1.0/stock/${symbol}/stats`, function (data){
+            //   $("#mktCap").text((+data["marketcap"]/1000000).toFixed(2)+"M");
+            //     }); 
                 //refreshes the page every TT using the API.
-                setInterval(function(){ 
-              $.ajax({// initial rendering of Symbol page with data from API
-                    url: `https://api.iextrading.com/1.0/stock/${symbol}/quote`,
-                    type: 'GET',
-                    success: function(data1){
-                           $.post("Latest_price_into_Main.php",data1);
-                            $("#price").text(" "+(Math.round(data1[`latestPrice`]*100)/100).toFixed(2));
-                            $("#upside").text(Math.round((firstPriceTarget/data1[`latestPrice`]-1)*100)+"%");
-                            $("#2ndupside").text(Math.round((secondPriceTarget/data1[`latestPrice`]-1)*100)+"%");
-                            if((last_price==="")||(last_price<=0))
-                            {
-                                 $("#varL").text("");
-                            }
-                            else{
+              //   setInterval(function(){ 
+              // $.ajax({// initial rendering of Symbol page with data from API
+              //       url: `https://api.iextrading.com/1.0/stock/${symbol}/quote`,
+              //       type: 'GET',
+              //       success: function(data1){
+              //              $.post("Latest_price_into_Main.php",data1);
+              //               $("#price").text(" "+(Math.round(data1[`latestPrice`]*100)/100).toFixed(2));
+              //               $("#upside").text(Math.round((firstPriceTarget/data1[`latestPrice`]-1)*100)+"%");
+              //               $("#2ndupside").text(Math.round((secondPriceTarget/data1[`latestPrice`]-1)*100)+"%");
+              //               if((last_price==="")||(last_price<=0))
+              //               {
+              //                    $("#varL").text("");
+              //               }
+              //               else{
                                
-                                $("#varL").text(Math.round((data1[`latestPrice`]/last_price-1)*100)+"%"); 
-                            }
-                            $("#api_return").hide();
-                                },
-                    error: function() {
-                            $("#api_return").show();
-                            },
-                                dataType:"json"
-                                });          
-              }, 60000);//sets minute interval to repeat ajax methods
+              //                   $("#varL").text(Math.round((data1[`latestPrice`]/last_price-1)*100)+"%"); 
+              //               }
+              //               $("#api_return").hide();
+              //                   },
+              //       error: function() {
+              //               $("#api_return").show();
+              //               },
+              //                   dataType:"json"
+              //                   });          
+              // }, 60000);//sets minute interval to repeat ajax methods
+
+              //refreshes the page every TT using the API.
+              // setInterval(function(){ 
+              // $.ajax({// initial rendering of Symbol page with data from API
+              //       url: 'https://api.iextrading.com/1.0/tops/last?symbols='+symbol,
+              //       type: 'GET',
+              //       success: function(data){
+
+              //           var latestPrice = data[0].price;
+
+              //           if (now - data[0].time > 600000){
+              //               $("#price").text(data[0].price + "!!");
+              //               console.log(data[0].price + "!!");
+              //           }else{
+              //               $("#price").text(data[0].price);
+              //               console.log(data[0].price)
+              //           }
+
+              //              $.post("Latest_price_into_Main.php",data);
+              //               $("#price").text(" "+(Math.round(latestPrice*100)/100).toFixed(2));
+              //               $("#upside").text(Math.round((firstPriceTarget/latestPrice-1)*100)+"%");
+              //               $("#2ndupside").text(Math.round((secondPriceTarget/latestPrice-1)*100)+"%");
+              //               if((last_price==="")||(last_price<=0))
+              //               {
+              //                    $("#varL").text("");
+              //               }
+              //               else{
+                               
+              //                   $("#varL").text(Math.round((latestPrice/last_price-1)*100)+"%"); 
+              //               }
+              //               $("#api_return").hide();
+              //                   },
+              //       error: function() {
+              //               $("#api_return").show();
+              //               },
+              //                   dataType:"json"
+              //                   });          
+              // }, 60000);//sets minute interval to repeat ajax methods              
             
-              
-              
+                  
               // $("#clear").on("click",function(){
               //   $("#userComment").val("");
               // })
