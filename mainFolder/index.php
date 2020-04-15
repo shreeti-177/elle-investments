@@ -1,4 +1,8 @@
 <?php
+
+
+
+
 if (isset($_GET['accept-cookies'])) {
     /* cookie notice banner accepted for one year 31556925 or ~6 months 16000000 or until they clear history */
     setcookie('accept-cookies', 'cookies-notice-banner-accepted', time() + 16000000);
@@ -7,6 +11,10 @@ if (isset($_GET['accept-cookies'])) {
 ?>
 
 <?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 $page = $_GET['page'];
 switch ($page) {
     case "de_nobis":
@@ -52,10 +60,11 @@ switch ($page) {
         <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
         <!--All page specific code goes above this line which loads the common head-->
         <script src="../js/load-head.js"></script>
+        
     </head>
 
     <body>
-
+    
         <?php
         /* show banner if cookies is not accepted */
         if (!isset($_COOKIE['accept-cookies'])) {
@@ -86,3 +95,6 @@ switch ($page) {
         </div>
     </body>
 </html>
+
+
+

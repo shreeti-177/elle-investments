@@ -1,5 +1,6 @@
 <?php
-    
+
+
     session_start();
     
     $_SESSION['count'];
@@ -100,7 +101,7 @@
     <div class="middle-bar"></div> -->
 </div> 
 
-        <form action="login.php" method="POST">
+        <form action="index.php" method="POST">
                 User: </br>
                 <input type="text" name="username" value="<?php 
                     

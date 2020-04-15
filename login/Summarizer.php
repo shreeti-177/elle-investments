@@ -1,11 +1,11 @@
 <?php 
- 
+  
   session_start();
- if(!isset($_SESSION['uname'])){
-   
-  header("Location:logout.php");
-  exit();
-}
+  if(!isset($_SESSION['uname'])){
+    
+    header("Location:logout.php");
+    exit();
+  }
 // if (isset($_SESSION["Last_Activity"]) && (time() - $_SESSION["Last_Activity"] >2880000)) {
 //   header("Location:logout.php");
 // }else{
@@ -14,6 +14,11 @@
 // }
  $user=$_SESSION['uname'];
  $type=$_SESSION['type'];
+//  $file = fopen("file/ListOfStocks.csv","r");
+//  $data = fgetcsv($file);
+//  $num = count($data);
+//  echo $data[0]."<br>";
+//  fclose($file)
   
 ?>
 
@@ -43,10 +48,11 @@
         <div class="container"> 
           <!--<p style="display:inline"> <?= ''.$user.'' ?></p>-->
           <ul style="display:inline-block;float:left;margin-left:-231px;list-style-type: none;margin-left:-50px">
-              <li><?= ''.$user.'' ?></li>
-              <li><?= ''.$type.''?></li>
+              <li><?= $user ?></li>
+              <li><?= $type ?></li>
           </ul>
-          <button style="margin-left:50px;display:inline-block" ><a href="logout.php">Log Out</a></button>
+          <button style="margin-left:100px;display:inline-block"><a href="Summarizer.php?click=true">Click</a></button>
+          <button style="margin-left:0px;display:inline-block" ><a href="logout.php">Log Out</a></button>
           <button style="margin-top:5px;display:inline-block"><a href="loader.php">Loader</a></button>
           <h2 style="text-align:center; margin-top:-29px;margin-left:55px;margin-bottom:0px;width:991px">Summarizer</h2>
           
@@ -90,18 +96,26 @@
       </thead>
       <tbody> 
 <?php
-           $con=mysqli_connect("rendertech.com",$_SESSION['uname_long'],$_SESSION['psw'],"pupone_Summarizer");
+  if (isset($_GET['click']) && $_GET['click'] === "true") {
+    GetLatestPrices();
+  }
+
+          $con=mysqli_connect("rendertech.com",$_SESSION['uname_long'],$_SESSION['psw'],"pupone_Summarizer");
           if (!$con)
-            {
+          {
             die('Could not connect: '.mysqli_error());
-            } 
+          } 
           mysqli_select_db($con,"pupone_Summarizer");
+
+          
+
           /*if($result = mysqli_query($con,"SELECT symbol, current_price, analysis_date, 1st_price_target, 1st_price_target / current_price - 1 AS 1st_upside, rank, target_weight,actual_weight,weight_difference,next_earnings FROM main_table"))*/
           if($result = mysqli_query($con,"SELECT symbol, current_price, 1st_price_target, 1st_price_target / current_price - 1 AS 1st_upside, 2nd_price_target, 2nd_price_target / current_price - 1 AS 2nd_upside, last_price, current_price - last_price AS variationL, actual_weight, target_weight, actual_weight - target_weight AS weight_difference, next_earnings FROM main_table where status = 'active';"))
           {
               /* pull data from database and insert into data table. */
               while($row = mysqli_fetch_array($result))
               {
+                //echo $row['symbol'];
                   /*$correct_format=preg_match_all('/(19|20)(\d{2})-(\d{1,2})-(\d{1,2})/', $row['analysis_date']);
                   if($correct_format===0)
                   {
@@ -116,7 +130,7 @@
                   $row['current_price']=floatval($row['current_price']);
                   $row['current_price']= number_format($row['current_price'],2,'.',',');*/
                   ?>  <tr>
-                      <td ><a class="name" ><?= $row['symbol']?></a></td>
+                          <td ><a class="name" ><?= $row['symbol']?></a></td>
                           <td id="<?= $row['symbol']?>" style = "text-align: center"><?= $row['current_price']?></div></td>
                           <td id="pt<?= $row['symbol']?>" style = "text-align: center"><?= $row['1st_price_target']?></td>
                           <td id="upside<?= $row['symbol']?>" style = "text-align: center"><?= $row['1st_upside']?></td>
@@ -129,101 +143,118 @@
                           <td><div style = "text-align: center"><?= $row['weight_difference']?>%</div></td>
                           <td><div style = "text-align: center"><?= $row['next_earnings']?></div></td>
                         </tr>
-                       <script>
-                          /*$.get(`https://api.iextrading.com/1.0/stock/<?= $row['symbol'] ?>/price`, function (data){
-                              $("#<?=$row['symbol']?>").text(" "+(Math.round(data*100)/100).toFixed(2));
-                            var firstPriceTarget=$("#pt<?= $row['symbol'] ?>").text();
-                            $("#upside<?=$row['symbol']?>").text(Math.round((firstPriceTarget/data-1)*100)+"%");
-                             var secondPriceTarget=$("#2ndPT<?= $row['symbol']?>").text();
-                             $("#2ndupside<?= $row['symbol']?>").text(Math.round((secondPriceTarget/data-1)*100)+"%");
-                             var lastPrice=$("#LPrice<?=$row['symbol']?>").text();
-                             $("#varL<?=$row['symbol']?>").text(Math.round((data/lastPrice-1)*100)+"%");
-                            console.log(lastPrice);
-                          });*/
-                           $.ajax({// initial rendering of Symbol page with data from API
-                    url: `https://api.iextrading.com/1.0/stock/<?= $row['symbol'] ?>/price`, //GET JSON object from url
-                    type: 'GET',
-                    success: function(data){
-                            //$.post("Latest_price_into_Main.php",data);//sends to php page to update sql table with new price
-                             $("#<?=$row['symbol']?>").text(" "+(Math.round(data*100)/100).toFixed(2));
-                            var firstPriceTarget=$("#pt<?= $row['symbol'] ?>").text();
-                            $("#upside<?=$row['symbol']?>").text(Math.round((firstPriceTarget/data-1)*100)+"%");
-                             var secondPriceTarget=$("#2ndPT<?= $row['symbol']?>").text();
-                             $("#2ndupside<?= $row['symbol']?>").text(Math.round((secondPriceTarget/data-1)*100)+"%");
-                             var lastPrice=$("#LPrice<?=$row['symbol']?>").text();
-                             if((lastPrice==="")||(lastPrice<=0))
-                            {
-                                 $("#varL<?=$row['symbol']?>").text("");
-                            }
-                            else{
-                               
-                                $("#varL<?=$row['symbol']?>").text(Math.round((data/lastPrice-1)*100)+"%"); 
-                            }
-            
-                                },
-                    error: function() {//if no JSON object is returned
-                           //does nothing so that only data from sql table remains
-                            }
-                                });
-                        setInterval(function(){ 
-                             $.ajax({// initial rendering of Symbol page with data from API
-                    url: `https://api.iextrading.com/1.0/stock/<?= $row['symbol'] ?>/price`, //GET JSON object from url
-                    type: 'GET',
-                    success: function(data){
-                            //$.post("Latest_price_into_Main.php",data);//sends to php page to update sql table with new price
-                             $("#<?=$row['symbol']?>").text(" "+(Math.round(data*100)/100).toFixed(2));
-                            var firstPriceTarget=$("#pt<?= $row['symbol'] ?>").text();
-                            $("#upside<?=$row['symbol']?>").text(Math.round((firstPriceTarget/data-1)*100)+"%");
-                             var secondPriceTarget=$("#2ndPT<?= $row['symbol']?>").text();
-                             $("#2ndupside<?= $row['symbol']?>").text(Math.round((secondPriceTarget/data-1)*100)+"%");
-                             var lastPrice=$("#LPrice<?=$row['symbol']?>").text();
-                             if((lastPrice==="")||(lastPrice<=0))
-                            {
-                                 $("#varL<?=$row['symbol']?>").text("");
-                            }
-                            else{
-                               
-                                $("#varL<?=$row['symbol']?>").text(Math.round((data/lastPrice-1)*100)+"%"); 
-                            }
-                            
-                                },
-                    error: function() {//if no JSON object is returned
-                           //does nothing so that only data from sql table remains
-                            }
-                                }); 
-                              }, 60000);
-                         /*setInterval(function(){ 
-                              $.get(`https://api.iextrading.com/1.0/stock/<?= $row['symbol']?> /price`, function (data){
-                             $("#<?=$row['symbol']?>").text(" "+(Math.round(data*100)/100).toFixed(2));
-                                    var firstPriceTarget=$("#pt<?= $row['symbol'] ?>").text();
-                                $("#upside<?= $row['symbol'] ?>").text(Math.round((firstPriceTarget/data-1)*100)+"%");
-                                 var secondPriceTarget=$("#2ndPT<?= $row['symbol']?>").text();
-                             $("#2ndupside<?= $row['symbol']?>").text(Math.round((secondPriceTarget/data-1)*100)+"%");
-                             var lastPrice=$("#LPrice<?=$row['symbol']?>").text();
-                             $("#varL<?=$row['symbol']?>").text(Math.round((data/lastPrice-1)*100)+"%");
-                                    }); 
-                              }, 60000);*/
-                        </script> 
+
                        <?php
                      
               }
               mysqli_free_result($result);
         }
+
+        
+
+        function GetLatestPrices() {
+
+          $mysqli = new mysqli("rendertech.com", $_SESSION['uname_long'], $_SESSION['psw'], "pupone_Summarizer");
+
+      
+          
+          if ($mysqli->connect_error) {
+            die("Connection failed: " . $mysqli->connect_error);
+        }
+        
+        if($SelectStocks = $mysqli -> query("SELECT DISTINCT symbol FROM main_table ORDER BY symbol"))
+          {
+              while($row = mysqli_fetch_array($SelectStocks))
+              {       
+                $ListOfStocks .= $row[0].",";
+              }
+              mysqli_free_result($SelectStocks);
+        }
+
+        $response = file_get_contents('https://api.iextrading.com/1.0/tops/last?symbols='.$ListOfStocks);
+        $final = json_decode($response);
+        $elementCount  = count($final); 
+
+        // Create Work table and then 
+        // jsonOBJECT to table 
+
+        $maketemp = "
+    CREATE TABLE temp_stock_price_table (
+      `symbol` VARCHAR(45) NOT NULL PRIMARY KEY,
+      `price` DECIMAL(6,3) NOT NULL,
+      `size` INT(6) NOT NULL,
+      `epoch` BIGINT(20) NOT NULL
+    )
+  "; 
+
+  $mysqli->query($maketemp) or die ("Sql error : ".mysql_error());
+      
+  for ($x = 0; $x < $elementCount; $x++) {
+        $current_price = $final[$x]->price;
+        $symbol = $final[$x]->symbol;
+        $size = $final[$x]->size;
+        $time = $final[$x]->time;
+    
+        $InsertQuery .= "INSERT INTO temp_stock_price_table VALUES('$symbol', $current_price, $size, $time);";
+              
+      }
+
+      if ($mysqli -> multi_query($InsertQuery)){
+      do{
+              //store_result() Transfers the result set from the last query on the database connection
+        if ($result = $mysqli -> store_result()) {
+          $result -> free_result(); // frees the memory associated with the result.
+        }
+
+            } while ($mysqli -> next_result());
+              //mysqli_next_result() function prepares the next result-set from multi_query()
+
+          }
+
+          $Update_main_table = "SET SQL_SAFE_UPDATES=0;";
+          $Update_main_table .= "UPDATE main_table m, temp_stock_price_table p SET m.current_price = p.price WHERE m.symbol = p.symbol;";
+          $Update_main_table .= "SET SQL_SAFE_UPDATES=1;";
+          $Update_main_table .= "DROP TABLE temp_stock_price_table";
+        
+          if ($mysqli -> multi_query($Update_main_table)){
+            do{
+                    //store_result() Transfers the result set from the last query on the database connection
+              if ($result = $mysqli -> store_result()) {
+                $result -> free_result(); // frees the memory associated with the result.
+              }
+      
+                  } while ($mysqli -> next_result());
+                    //mysqli_next_result() function prepares the next result-set from multi_query()
+      
+                }
+
+
+          $mysqli -> close();
+
+        }
+
+
+
           mysqli_close($con);
+
+          //ERROR REPORTING
+          ini_set('display_errors', 1);
+          ini_set('display_startup_errors', 1);
+          error_reporting(E_ALL);
           
       
           ?>
     </tbody>
   </table>
 </div>
-<?php $_SESSION["selected_symbol"]=$_POST["symbol"] ?>
-<footer style="text-align:center">
 
+
+<footer style="text-align:center">
   <nav>
-  <a href="SummarizerLogin.html">Login</a>
-  <a href="SummarizerStock.html">Stock</a>
-  <a href="SummarizerTable.html">Table</a>
-</nav>
+    <a href="SummarizerLogin.html">Login</a>
+    <a href="SummarizerStock.html">Stock</a>
+    <a href="SummarizerTable.html">Table</a>
+  </nav>
 </footer>
 
 <script>
@@ -232,6 +263,7 @@ $('#SummarizerTable').DataTable({
     paging: false
 });
 });
+
 $(document).on("click", ".name", function() {
     var Symbol = $(this).text();  
     window.location.href = 'symbol.php?name='+Symbol; 
