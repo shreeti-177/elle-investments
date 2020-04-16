@@ -51,7 +51,7 @@
               <li><?= $user ?></li>
               <li><?= $type ?></li>
           </ul>
-          <button style="margin-left:100px;display:inline-block"><a href="Summarizer.php?click=true">Click</a></button>
+          <button style="margin-left:100px;display:inline-block"><a href="Summarizer.php?click=true">Price</a></button>
           <button style="margin-left:0px;display:inline-block" ><a href="logout.php">Log Out</a></button>
           <button style="margin-top:5px;display:inline-block"><a href="loader.php">Loader</a></button>
           <h2 style="text-align:center; margin-top:-29px;margin-left:55px;margin-bottom:0px;width:991px">Summarizer</h2>
@@ -179,7 +179,7 @@
         // jsonOBJECT to table 
 
         $maketemp = "
-    CREATE TABLE temp_stock_price_table (
+    CREATE TABLE IF NOT EXISTS temp_stock_price_table (
       `symbol` VARCHAR(45) NOT NULL PRIMARY KEY,
       `price` DECIMAL(6,3) NOT NULL,
       `size` INT(6) NOT NULL,
@@ -196,25 +196,46 @@
         $time = $final[$x]->time;
     
         $InsertQuery .= "INSERT INTO temp_stock_price_table VALUES('$symbol', $current_price, $size, $time);";
+        $UpdateQuery .= "UPDATE temp_stock_price_table SET price=$current_price, size=$size, epoch=$time WHERE symbol='$symbol';";
               
       }
 
-      if ($mysqli -> multi_query($InsertQuery)){
-      do{
-              //store_result() Transfers the result set from the last query on the database connection
-        if ($result = $mysqli -> store_result()) {
-          $result -> free_result(); // frees the memory associated with the result.
-        }
+      $val = $mysqli->query("select 1 from temp_stock_price_table LIMIT 1");
 
+      if($val !== FALSE)
+      {
+        if ($mysqli -> multi_query($UpdateQuery)){
+          do{
+              //store_result() Transfers the result set from the last query on the database connection
+              if ($result = $mysqli -> store_result()) {
+                $result -> free_result(); // frees the memory associated with the result.
+              }
+    
             } while ($mysqli -> next_result());
               //mysqli_next_result() function prepares the next result-set from multi_query()
+    
+        }
+      }
+      else
+      {
+        if ($mysqli -> multi_query($InsertQuery)){
+          do{
+              //store_result() Transfers the result set from the last query on the database connection
+              if ($result = $mysqli -> store_result()) {
+                $result -> free_result(); // frees the memory associated with the result.
+              }
+    
+            } while ($mysqli -> next_result());
+              //mysqli_next_result() function prepares the next result-set from multi_query()
+    
+        }
+      }
 
-          }
+      
 
           $Update_main_table = "SET SQL_SAFE_UPDATES=0;";
           $Update_main_table .= "UPDATE main_table m, temp_stock_price_table p SET m.current_price = p.price WHERE m.symbol = p.symbol;";
-          $Update_main_table .= "SET SQL_SAFE_UPDATES=1;";
-          $Update_main_table .= "DROP TABLE temp_stock_price_table";
+          $Update_main_table .= "SET SQL_SAFE_UPDATES=1";
         
           if ($mysqli -> multi_query($Update_main_table)){
             do{
@@ -240,8 +261,10 @@
          
       
           ?>
+
     </tbody>
   </table>
+  
 </div>
 
 
@@ -264,6 +287,7 @@ $(document).on("click", ".name", function() {
     var Symbol = $(this).text();  
     window.location.href = 'symbol.php?name='+Symbol; 
 });
+
 
 </script>
 </body>
