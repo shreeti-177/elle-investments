@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>newJSON demo</title>
+  <style>
+  img {
+    height: 100px;
+    float: left;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+<body>
+ 
+<div id="ALLprices">
+    <h4>Current Price ($): <span id="symbol"> </span> <span id="price"></span></h4> 
+    <h4>Current Prices ($): <span id="symbols"> </span> <span id="prices"></span></h4> 
+</div>
+<div>
+
+    <div id="allPrices"> 
+     localhost/elle-investments/LoginF/newJSON.html
+     <br>
+     http://elle-investments.com/LoginF/newJSON.html
+    </div>
+     <div id="images"></div>
+</div>
+       
+
+
+
+
+ 
+<script>
+(function() {
+  var flickerAPI = "https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+  $.getJSON( flickerAPI, {
+    tags: "mount rainier",
+    tagmode: "any",
+    format: "json"
+  })
+    .done(function( data ) {
+      $.each( data.items, function( i, item ) {
+        $( "<img>" ).attr( "src", item.media.m ).appendTo( "#images" );
+        if ( i === 3 ) {
+          return false;
+        }
+      });
+    });
+})();
+</script>
+
+<script>
+    window.onload = function(){
+        var symbol = 'ACAD';
+        document.getElementById('symbol').innerHTML = symbol;
+        $.getJSON('https://api.iextrading.com/1.0/tops/last?symbols=' + symbol, function(data) {
+            var latestPrice = data[0].price;
+            var timeUpdated = data[0].time;
+            document.getElementById('price').innerHTML = latestPrice;
+        });
+
+        var symbols = 'ACAD,CRM';
+        document.getElementById('symbols').innerHTML = symbols;
+        $.getJSON('https://api.iextrading.com/1.0/tops/last?symbols=' + symbols, function(data) {
+            var latestPrice0 = data[0].price;
+            var latestPrice1 = data[1].price;
+            var timeUpdated = data[1].time;
+            document.getElementById('prices').innerHTML = latestPrice0 + " , " + latestPrice1;
+        });
+    };
+</script>
+
+</body>
+</html>

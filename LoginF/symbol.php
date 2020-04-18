@@ -108,7 +108,6 @@
                   ?>
                     <ul>
                         <li><h4><a contenteditable="true" id="status"><?= $row1['status'] ?></a></h4></li>
-                        <li><h4><a contenteditable="true" id="status"><?= $row1['status'] ?></a></h4></li>
                         <li><h4>Penny Stock: <a contenteditable="true" id="PStock"><?= $row1['penny_stock'] ?></a></h4><h4>Cash: <a contenteditable="true" id="cash"><?= $row1['cash'] ?></a></h4><h4>Burn: <a contenteditable="true" id="burn"><?=$row1['burn'] ?></a></h4></li>
                         <li><h4>Biotech: <a contenteditable="true" id="biotech"><?= $row1['biotech'] ?></a></h4></li>         
                     </ul>
@@ -117,7 +116,7 @@
                     <h4 class="stock_title"><a contenteditable="true" id="mktCap"><?= $row1['market_cap'] ?></a></h4>
                     
                     <h4 class="stock_title"><a contenteditable="true" id="industry"><?= $row1['industry'] ?></a></h4>
-                    <h4>Current Price ($): <a contenteditable="true" id="price"></a><p id="api_return"></p></h4>   
+                    <h4>Current Price ($): <span id="api_return"></span></h4>   
                     
                    
                   <!--<div style="clear:both"></div>-->
@@ -227,28 +226,29 @@
         <script src="save.js"></script>
         <script>
           // API call to get the current stock price
-            var symbol=$("#symbol").text();
+         var symbol=$("#symbol").text();
             
-            var firstPriceTarget=$("#PTarget").text()
+            
+            var firstPriceTarget=$("#PTarget").text();
             var secondPriceTarget=$("#2ndPTarget").text();
             var last_price=$("#last_price").text();
             //console.log(last_price, secondPriceTarget, firstPriceTarget);
-            var now = Math.floor(Date.now());
-
-
-            $.getJSON('https://api.iextrading.com/1.0/tops/last?symbols='+symbol, function(data) {
-
-              var latestPrice = data[0].price;
-              var timeUpdated = data[0].time;
-                
-                if (now - timeUpdated > 600000){
+            window.onload = function(){
+                var now = Math.floor(Date.now());
+                $.getJSON('https://api.iextrading.com/1.0/tops/last?symbols=' + symbol, function(data) {
+                    var latestPrice = data[0].price;
+                    var timeUpdated = data[0].time;
+                    if (now - timeUpdated > 600000){
                     $("#price").text(latestPrice + "!!");
                 }else{
                     $("#price").text(latestPrice);
-                    $.post("Latest_price_into_Main.php",data[0]);
+                    //$.post("Latest_price_into_Main.php",data[0]);
+                    
                 }
-
+                document.getElementById('api_return').innerHTML = latestPrice;
+                //console.log(data);
             });
+        };
           
             // $.ajax({// initial rendering of Symbol page with data from API
             //         url: `https://api.iextrading.com/1.0/stock/${symbol}/quote`, //GET JSON object from url
