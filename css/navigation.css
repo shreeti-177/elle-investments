@@ -28,7 +28,7 @@ and open the template in the editor.
     padding: 0 15px;
     height: 50px;
     border: 1px solid #fff;
-    background: url("../images/main-nav-bkg.jpg") repeat-x;
+    background: url("images/main-nav-bkg.jpg") repeat-x;
 }
 
 
@@ -53,7 +53,7 @@ and open the template in the editor.
     line-height: 15px;
     max-height: 100%;
     text-align: center;
-    background: url("../images/main-nav-divider.png") right center no-repeat;
+    background: url("images/main-nav-divider.png") right center no-repeat;
     width: 5px;
     padding-right: 5px;
     height: 48px;
@@ -75,7 +75,7 @@ and open the template in the editor.
 }
 
 #navigation .menu-item a:hover {
-    background: url("../images/main-nav-hover.jpg") repeat-x;
+    background: url("images/main-nav-hover.jpg") repeat-x;
     text-decoration: none;
 }
 
@@ -104,7 +104,7 @@ and open the template in the editor.
 }
 
 #navigation .sub-menu a:hover {
-    background: url("../images/white90.png");
+    background: url("images/white90.png");
     white-space: normal;
 
 }
