@@ -24,32 +24,7 @@
 
 
       <script src="http://mbostock.github.com/d3/d3.v2.js"></script>
-  		<style>
-                    /*To be deleted?*/
-  			/* tell the SVG path to be a thin blue line without any area fill */
-                        
-  			/*path {
-  				stroke: steelblue;
-  				stroke-width: 3;
-  				fill: none;
-  			}
-  			.axis {
-  			  shape-rendering: crispEdges;
-  			}
-  			.x.axis line {
-  			  stroke: black;
-  			}
-  			.x.axis .minor {
-  			  stroke-opacity: .5;
-  			}
-  			.x.axis path {
 
-  			}
-  			.y.axis line, .y.axis path {
-  			  fill: none;
-  			  stroke: #000;
-  			}    */ 
-  		</style>
 <!-- jQuery library -->
 <!-- <script src="SummarizerJS.js"></script> -->
 
@@ -250,100 +225,7 @@
             });
         };
           
-            // $.ajax({// initial rendering of Symbol page with data from API
-            //         url: `https://api.iextrading.com/1.0/stock/${symbol}/quote`, //GET JSON object from url
-            //         type: 'GET',
-            //         success: function(data1){
-            //                 $.post("Latest_price_into_Main.php",data1);//sends to php page to update sql table with new price
-            //                 $("#price").text(" "+(Math.round(data1[`latestPrice`]*100)/100).toFixed(2));
-            //                 $("#upside").text(Math.round((firstPriceTarget/data1[`latestPrice`]-1)*100)+"%");
-            //                 $("#2ndupside").text(Math.round((secondPriceTarget/data1[`latestPrice`]-1)*100)+"%");
-            //                if((last_price==="")||(last_price<=0))
-            //                 {
-            //                      $("#varL").text("");
-            //                 }
-            //                 else{
-                               
-            //                     $("#varL").text(Math.round((data1[`latestPrice`]/last_price-1)*100)+"%"); 
-            //                 }
-            //                 $("#api_return").hide();
-            //                     },
-            //         error: function() {//if no JSON object is returned
-            //                 console.log("nuk po punon")  //display html element indicating JSON object did not return
-            //                 }
-            //                     });         
-            // $.get(`https://api.iextrading.com/1.0/stock/${symbol}/stats`, function (data){
-            //   $("#mktCap").text((+data["marketcap"]/1000000).toFixed(2)+"M");
-            //     }); 
-                //refreshes the page every TT using the API.
-              //   setInterval(function(){ 
-              // $.ajax({// initial rendering of Symbol page with data from API
-              //       url: `https://api.iextrading.com/1.0/stock/${symbol}/quote`,
-              //       type: 'GET',
-              //       success: function(data1){
-              //              $.post("Latest_price_into_Main.php",data1);
-              //               $("#price").text(" "+(Math.round(data1[`latestPrice`]*100)/100).toFixed(2));
-              //               $("#upside").text(Math.round((firstPriceTarget/data1[`latestPrice`]-1)*100)+"%");
-              //               $("#2ndupside").text(Math.round((secondPriceTarget/data1[`latestPrice`]-1)*100)+"%");
-              //               if((last_price==="")||(last_price<=0))
-              //               {
-              //                    $("#varL").text("");
-              //               }
-              //               else{
-                               
-              //                   $("#varL").text(Math.round((data1[`latestPrice`]/last_price-1)*100)+"%"); 
-              //               }
-              //               $("#api_return").hide();
-              //                   },
-              //       error: function() {
-              //               $("#api_return").show();
-              //               },
-              //                   dataType:"json"
-              //                   });          
-              // }, 60000);//sets minute interval to repeat ajax methods
-
-              //refreshes the page every TT using the API.
-              // setInterval(function(){ 
-              // $.ajax({// initial rendering of Symbol page with data from API
-              //       url: 'https://api.iextrading.com/1.0/tops/last?symbols='+symbol,
-              //       type: 'GET',
-              //       success: function(data){
-
-              //           var latestPrice = data[0].price;
-
-              //           if (now - data[0].time > 600000){
-              //               $("#price").text(data[0].price + "!!");
-              //               console.log(data[0].price + "!!");
-              //           }else{
-              //               $("#price").text(data[0].price);
-              //               console.log(data[0].price)
-              //           }
-
-              //              $.post("Latest_price_into_Main.php",data);
-              //               $("#price").text(" "+(Math.round(latestPrice*100)/100).toFixed(2));
-              //               $("#upside").text(Math.round((firstPriceTarget/latestPrice-1)*100)+"%");
-              //               $("#2ndupside").text(Math.round((secondPriceTarget/latestPrice-1)*100)+"%");
-              //               if((last_price==="")||(last_price<=0))
-              //               {
-              //                    $("#varL").text("");
-              //               }
-              //               else{
-                               
-              //                   $("#varL").text(Math.round((latestPrice/last_price-1)*100)+"%"); 
-              //               }
-              //               $("#api_return").hide();
-              //                   },
-              //       error: function() {
-              //               $("#api_return").show();
-              //               },
-              //                   dataType:"json"
-              //                   });          
-              // }, 60000);//sets minute interval to repeat ajax methods              
             
-                  
-              // $("#clear").on("click",function(){
-              //   $("#userComment").val("");
-              // })
         </script>
     </body>
 </html>
