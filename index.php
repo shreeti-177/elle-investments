@@ -6,7 +6,7 @@
 if (isset($_GET['accept-cookies'])) {
     /* cookie notice banner accepted for one year 31556925 or ~6 months 16000000 or until they clear history */
     setcookie('accept-cookies', 'cookies-notice-banner-accepted', time() + 16000000);
-    header('Location: ./index.php'); /* refresh this page */
+    header('Location: index.php'); /* refresh this page */
 }
 ?>
 
