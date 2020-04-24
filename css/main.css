@@ -254,7 +254,7 @@ a:hover, a:focus, a:active {
 }
 
 #stars {
-    background-image: url('../images/Stars_DV_logo_kt1_2.21.png');
+    background-image: url('images/Stars_DV_logo_kt1_2.21.png');
     background-repeat: no-repeat;
     /*background-position: 20px 16px;
         background-size: auto 80px;*/
