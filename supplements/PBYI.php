@@ -35,7 +35,7 @@
         <div id="supra-header"></div>
         <div id="page">
             <div id="header"> 
-                <?php include('../header.php'); ?> 
+                <?php include('../header_research.php'); ?> 
             </div>
              <div id="main-container" class="clear"> 
                 <br>
