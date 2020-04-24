@@ -83,7 +83,7 @@ switch ($page) {
         <div id="supra-header"></div>
         <div id="page">
             <div id="header"> 
-                <?php include('headerx.php'); ?> 
+                <?php include('header.php'); ?> 
             </div>
             <div id="main-container" class="clear"> 
                 <div id="tableDiv">
