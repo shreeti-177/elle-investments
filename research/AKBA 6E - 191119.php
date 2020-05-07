@@ -22,7 +22,7 @@
              <div id="main-container" class="clear"> 
                 <br>
                 <div id="tableDiv">
-                    <?php include('AKBA 6E - 191119.html'); ?>
+                 <?php include('AKBA 6E - 191119.html'); ?>
 
                 </div>
 
