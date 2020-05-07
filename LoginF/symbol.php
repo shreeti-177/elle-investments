@@ -3,18 +3,20 @@
   session_start();
        
   if(!isset($_SESSION['uname'])){
-      
-   
     header("Location:logout.php");
     exit();
-}
+  }
+
   if(isset($_GET["symbolSearch"])){
     $name=$_GET["symbolSearch"];
     header("Location:symbol.php?name=$name");
   };
- $user=$_SESSION['uname'];
- $type=$_SESSION['type'];
+
+  $user=$_SESSION['uname'];
+  $type=$_SESSION['type'];
+
 ?>
+
 <html lang="en">
     <head>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -25,12 +27,10 @@
 
       <script src="http://mbostock.github.com/d3/d3.v2.js"></script>
 
-<!-- jQuery library -->
-<!-- <script src="SummarizerJS.js"></script> -->
 
 <!-- Latest compiled JavaScript -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
-<link rel="stylesheet" href="symbol.css">
+<link rel="stylesheet" href="css/symbol.css">
     </head>
     <body>
       <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -187,45 +187,18 @@
               $('textarea').attr('readonly','readonly');
               $('#note1').attr('contenteditable','false');
               //$('a').attr('contenteditable','true');
-             $('.updatable').attr('contenteditable','true');
-              
-
+              $('.updatable').attr('contenteditable','true');
             </script>
             ";
           }
         ?>
       </div>
       <!-- script for hiding and displaying discussion, worst case .... -->
-        <script src="sym.js"></script>
+        <script src="js/sym.js"></script>
         <!-- script for saving symbol data on user click -->
-        <script src="save.js"></script>
-        <script>
-          // API call to get the current stock price
-         var symbol=$("#symbol").text();
-            
-            
-            var firstPriceTarget=$("#PTarget").text();
-            var secondPriceTarget=$("#2ndPTarget").text();
-            var last_price=$("#last_price").text();
-            //console.log(last_price, secondPriceTarget, firstPriceTarget);
-            window.onload = function(){
-                var now = Math.floor(Date.now());
-                $.getJSON('https://api.iextrading.com/1.0/tops/last?symbols=' + symbol, function(data) {
-                    var latestPrice = data[0].price;
-                    var timeUpdated = data[0].time;
-                    if (now - timeUpdated > 600000){
-                    $("#price").text(latestPrice + "!!");
-                }else{
-                    $("#price").text(latestPrice);
-                    //$.post("Latest_price_into_Main.php",data[0]);
-                    
-                }
-                document.getElementById('api_return').innerHTML = latestPrice;
-                //console.log(data);
-            });
-        };
-          
-            
-        </script>
+        <script src="js/save.js"></script>
+        <!--Get latest data of stocks from the API -->
+        <script src="js/api.js"></script>
+        
     </body>
 </html>

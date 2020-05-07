@@ -37,7 +37,7 @@
 
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="Summarizer.css">
+<link rel="stylesheet" type="text/css" href="css/Summarizer.css">
 
 </head>
 
@@ -254,12 +254,9 @@
 
         }
 
-
-
           mysqli_close($con);
 
-         
-      
+  
           ?>
 
     </tbody>
