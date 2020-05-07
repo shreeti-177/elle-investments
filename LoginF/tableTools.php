@@ -52,7 +52,7 @@
       //
         if($_FILES["file"]["name"]){
             $filename=explode(".",$_FILES["file"]["name"]);
-            //echo $filename[1];
+            echo $filename[1];
         }
         
          // http://hawkee.com/snippet/8320/ CSV to mySQL - Create Table and Insert Data -- at bottom
