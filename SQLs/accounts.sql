@@ -11,11 +11,11 @@ select * from log;
 select * from accounts;
 select * from Members;
 
-insert into accounts values (6,"Chenpei", "viewer");
+insert into accounts values (11,"Anh", "developer");
 
 update accounts set
-username = "Bella"
- where id = 21;
+username = "pupone_Anh"
+ where id = 13;
 
 delete from accounts where id  in (14);
 
@@ -28,12 +28,25 @@ update main_table
 set  symbol = 'VAL'
 where symbol = 'ESV';
 
-t1, BackUpTable_2018_07_09_02_32_18am t2
-
 select notes from main_table where symbol = 'AAOI';
 
 select * from backup_main_table t1, BackUpTable_2018_07_09_02_32_18am t2;
 
-delete from main_table where symbol = 'AAOI';
 
 insert into main_table select * from BackUpTable_2018_07_09_02_32_18am where symbol = 'AAOI';
+
+select * from temp_stock_price_table where symbol = 'CRM';
+
+select * from main_table where symbol = 'SBBP';
+
+
+alter table backup_main_table drop column id;
+
+
+insert main_table select * from backup_main_table where symbol = 'CRM';
+
+select * from backup_main_table where symbol = 'CRM';
+
+
+insert into main_table set symbol = 'SBBP';
+
