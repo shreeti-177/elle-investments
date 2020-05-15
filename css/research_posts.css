@@ -1,0 +1,122 @@
+.div_post {
+    align-items: start;
+    flex-direction: row;
+    font-size: 16px;
+
+    border-color: rgb(226, 226, 226);
+    border-bottom-width: 1px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom-style: solid;
+    display: flex;
+    text-transform: none;
+    letter-spacing: normal;
+    box-sizing: inherit;
+    font-weight: inherit;
+    cursor: pointer;
+    overflow-wrap: break-word;
+}
+
+.div_content {
+    padding-bottom: 4px;
+    justify-content: space-between;
+    flex-direction: column;
+    min-width: 1px;
+    display: flex;
+    font-size: 16px;
+    overflow: hidden;
+    flex-grow: 1;
+    font-family: Helvetica, arial, sans-serif;
+    text-transform: none;
+    letter-spacing: normal;
+    box-sizing: inherit;
+    font-weight: inherit;
+    cursor: pointer;
+    overflow-wrap: break-word;
+}
+
+.div_date p {
+    font-size: 16px;
+    margin-bottom: 16px;
+    font-family: Helvetica, arial, sans-serif;
+    text-transform: none;
+    letter-spacing: normal;
+    box-sizing: inherit;
+    display: block;
+    font-weight: inherit;
+    cursor: pointer;
+    color: rgb(27, 27, 27);
+
+}
+
+.div_explanation {
+    font-size: 16px;
+    font-family: Helvetica, arial, sans-serif;
+    text-transform: none;
+    letter-spacing: normal;
+    box-sizing: inherit;
+    display: block;
+    font-weight: inherit;
+    cursor: pointer;
+    overflow-wrap: break-word;
+}
+
+.div_title {
+    font-size: 22px;
+    line-height: 1.125;
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-bottom: 16px;
+    margin-top: 0px;
+    font-weight: 400;
+    color: rgb(27, 27, 27);
+    overflow-wrap: break-word;
+    letter-spacing: 2px;
+    font-family: Helvetica, arial, sans-serif;
+    text-transform: none;
+    box-sizing: inherit;
+}
+
+.div_paragraph {
+    font-size: 16px;
+    margin-bottom: 16px;
+    line-height: 1.5;
+    margin-top: 0px;
+    font-weight: 400;
+    color: rgb(27, 27, 27);
+    overflow-wrap: break-word;
+    font-family: Helvetica, arial, sans-serif;
+    text-transform: none;
+    letter-spacing: normal;
+    box-sizing: inherit;
+
+}
+
+.div_link {
+    font-size: 16px;
+    font-family: Helvetica, arial, sans-serif;
+    text-transform: none;
+    letter-spacing: normal;
+    box-sizing: inherit;
+    display: block;
+    color: rgb(5, 129, 161);
+    cursor: pointer;
+    overflow-wrap: break-word;
+}
+h5 {
+
+    font-size: 22px;
+    line-height: 1.125;
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-bottom: 16px;
+    margin-top: 0px;
+    font-weight: 400;
+    color: rgb(27, 27, 27);
+    overflow-wrap: break-word;
+    letter-spacing: 2px;
+    font-family: Helvetica, arial, sans-serif;
+    text-transform: none;
+    box-sizing: inherit;
+}
+
