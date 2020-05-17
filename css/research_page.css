@@ -8,22 +8,18 @@ and open the template in the editor.
     Author     : anhtd
 */
 
- .top_div{
-     line-height:0.0001pt;
- }
- 
- .top_div h1 {
-     font-size: 1.4em;
-     line-height: 2em;
- }
- 
- img {
-     display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
- }
- 
+.top_div{
+    line-height:0.0001pt;
+}
 
+.top_div h1 {
+    font-size: 1.4em;
+    line-height: 2em;
+}
 
-
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
