@@ -112,14 +112,17 @@ if ($_SESSION['type'] == "viewer") {
     </head>
     <body>
         <form name="form" action="tableTools.php" method="POST" enctype="multipart/form-data">
-            <input type="file" name="file" accept=".csv">   
+            <!-- <input type="file" name="file" accept=".csv">    -->
             <input type ="submit" name="flexible_update" value="Flexible Update"> 
             <input type="submit" name="append" value="Append">  
-            /<!-- this would redirect directly to different page
-             <input type="submit" formaction="append.php" name="append" value="Append"> 
-             -->
             <input type="submit" name="full_update" value="Full Update">
         </form> 
+
+        <form name="form" action="append_test.php" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".csv" style="float:right"> 
+            <input type="submit" name="append" style="float:right" value="APPEND">  
+        </form>
+       
 
            
             <form name="form" action="Download.php" method="POST" enctype="multipart/form-data">
